@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,5 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/home', [DashboardController::class, 'index']);
+Route::post('/email-schedule', [DashboardController::class, 'setEmailSchedule']);
 
 Route::get('/send-mail', [MailController::class, 'sendMail']);
