@@ -13,7 +13,11 @@
     
 
     <!-- Bootstrap core CSS -->
-<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css">
+    <!-- <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.3.1/ckeditor5.css" /> -->
+
 
     <style>
     .bd-placeholder-img {
@@ -61,6 +65,18 @@
             <a class="nav-link active" aria-current="page" href="#">
             <span data-feather="home"></span>
             Home
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+            <span data-feather="file"></span>
+            History
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+            <span data-feather="file"></span>
+            Email Setting
             </a>
         </li>
         <!-- <li class="nav-item">
@@ -146,16 +162,31 @@
         </div> -->
 
         <!-- <h2>Section title</h2> -->
+        @if(session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+
+        @if(session('error'))
+            <div class="alert alert-danger">{{ session('error') }}</div>
+        @endif
+        <form action="{{ url('/import-clients') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="file" name="file">
+            <button type="submit" class="btn btn-info btn-sm">Import Users</button>
+        </form>
         <form action="{{ url('/email-schedule') }}" method="post">
         @csrf
         <div class="mt-2 mb-4">
             <input type="date" id="birthday" name="date_schedule">
             <input type="time" id="birthday" name="time_schedule">
-            <input class="btn btn-success btn-sm ms-2" type="submit" value="Set Schedule">
+            <!-- <input class="btn btn-success btn-sm ms-2" type="submit" name="submit" value="Set Schedule">
+            <input type="submit" name="submit" value="Delete"> -->
+            <button type="submit" class="btn btn-success btn-sm ms-2" name="submit" value="schedule">Set Schedule</button>
+            <button type="submit" class="btn btn-danger btn-sm ms-2" name="submit" value="delete">Delete</button>
 
         </div>
         <div class="table-responsive">
-            <table class="table table-striped table-sm">
+            <table class="table table-striped table-sm" id="example">
             <thead>
                 <tr>
                     <th scope="col"></th>
@@ -193,5 +224,14 @@
     <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="/dashboard/dashboard.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> -->
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"></script>
+
+    <script>
+        new DataTable('#example');
+    </script>
 </body>
 </html>

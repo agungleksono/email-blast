@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    @include('includes.style')
 </head>
 <body>
     <div class="bg-info">
-        tete
+        {{ env('APP_URL') }}
     </div>
+    <img src="http://127.0.0.1:8000/assets/signature.png" alt="" style="width: 50px;">
 
-    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    @include('includes.script')
 </body>
 </html>

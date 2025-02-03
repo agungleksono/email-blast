@@ -20,6 +20,22 @@ Route::get('/', function () {
 });
 
 Route::get('/home', [DashboardController::class, 'index']);
+Route::get('/email-setting', [DashboardController::class, 'index']);
 Route::post('/email-schedule', [DashboardController::class, 'setEmailSchedule']);
 
 Route::get('/send-mail', [MailController::class, 'sendMail']);
+Route::post('/import-clients', [DashboardController::class, 'importClients']);
+Route::get('test', function () {
+    return view('pages.email_template');
+});
+
+Route::get('/history', function () {
+    return view('pages.history');
+});
+
+Route::get('/update-email', [MailController::class, 'editEmail']);
+Route::post('/update-email', [MailController::class, 'updateEmail']);
+
+Route::get('test1', function () {
+    return view('test');
+});
