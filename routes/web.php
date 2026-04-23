@@ -1,8 +1,11 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\ScheduleController;
 use Illuminate\Support\Facades\Route;
+use App\Exports\EmailSchedulesExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,27 +18,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('index.schedule');
 });
 
-Route::get('/home', [DashboardController::class, 'index']);
-Route::get('/email-setting', [DashboardController::class, 'index']);
-Route::post('/email-schedule', [DashboardController::class, 'setEmailSchedule']);
+Route::get('/schedule', [ScheduleController::class, 'index'])->name('index.schedule');
+Route::post('/import-schedule', [ScheduleController::class, 'importClients'])->name('import-schedule');
+Route::post('/email-schedule', [ScheduleController::class, 'setEmailSchedule']);
 
 Route::get('/send-mail', [MailController::class, 'sendMail']);
-Route::post('/import-clients', [DashboardController::class, 'importClients']);
-Route::get('test', function () {
-    return view('pages.email_template');
-});
 
-Route::get('/history', function () {
-    return view('pages.history');
-});
+Route::get('/history', [HistoryController::class, 'index'])->name('index.history');
 
-Route::get('/update-email', [MailController::class, 'editEmail']);
-Route::post('/update-email', [MailController::class, 'updateEmail']);
-
-Route::get('test1', function () {
-    return view('test');
+Route::get('/email-template', [MailController::class, 'editEmail']);
+Route::post('/email-template', [MailController::class, 'updateEmail']);
+Route::post('/email-test', [MailController::class, 'testEmail']);
+Route::get('/export-email-schedules', function () {
+    return Excel::download(new EmailSchedulesExport, 'email_schedules.xlsx');
 });

@@ -24,16 +24,18 @@
     </style>
 </head>
 <body style="width: 600px; font-family: sans-serif;">
-    <p>Dear {{ $data['pic'] }} {{ $data['company_name'] }}</p>
-    <p>{{ $data['company_address'] }}</p>
+    <p>Dear {{ $data['pic'] }} {{ $data['company_name'] }} <br>{{ $data['company_address'] }}</p>
 
     {!! $data['upper_body'] !!}
+
+    <img src="{{ url('/assets/sample.png') }}" style="width: 400px" alt="products" />
+
     {!! $data['lower_body'] !!}
     
     <br>
-    <p>Christina</p>
-    <p><i>Sales and Marketing</i></p>
+    <!-- <p>{{ $data['signature_name'] }}</p>
+    <p><i>Sales and Marketing</i></p> -->
 
-    <img src="http://127.0.0.1:8000/assets/signature.png" style="width: 300px;" />
+    <img src="{{ url('/assets/signature.png') }}" style="width: 300px" alt="signature" />
 </body>
 </html>

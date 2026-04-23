@@ -50,19 +50,19 @@
     <div class="position-sticky pt-3">
         <ul class="nav flex-column">
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">
+            <a class="nav-link {{ request()->is('schedule') || request()->is('schedule/*') ? 'active' : '' }}" aria-current="page" href="{{ route('index.schedule') }}">
             <span data-feather="home"></span>
-            Home
+            Schedule
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ url('history') }}">
+            <a class="nav-link {{ request()->is('history') || request()->is('history/*') ? 'active' : '' }}" href="{{ url('history') }}">
             <span data-feather="file"></span>
             History
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ url('update-email') }}">
+            <a class="nav-link {{ request()->is('email-template') || request()->is('email-template/*') ? 'active' : '' }}" href="{{ url('email-template') }}">
             <span data-feather="file"></span>
             Email Setting
             </a>

@@ -2,11 +2,51 @@
 
 @section('content')
 <div class="">
-    <form action="/update-email" method="post" enctype="multipart/form-data">
+	<div class="mb-4">
+		<form action="{{ url('/email-test') }}" method="post">
+			@csrf
+			<button type="submit" class="btn btn-info btn-sm">Test Email</button>
+		</form>
+	</div>
+    <form action="{{ url('/email-template') }}" method="post" enctype="multipart/form-data">
         @csrf
+		<div class="mb-3">
+			<label for="senderMail" class="form-label fw-bold">Sender Email</label>
+			<input type="text" class="form-control" name="sender_mail" id="senderMail" value="{{ $email->sender_mail }}">
+		</div>
+		<div class="mb-3">
+			<label for="senderName" class="form-label fw-bold">Sender Name</label>
+			<input type="text" class="form-control" name="sender_name" id="senderName" value="{{ $email->sender_name }}">
+		</div>
+		<div class="mb-3">
+			<label for="recipient" class="form-label fw-bold">Recipient Email Test</label>
+			<input type="text" class="form-control" name="recipient" id="recipient" value="{{ $email->recipient_mail_test }}">
+		</div>
+		<!-- <div class="mb-3">
+			<label for="signature_name" class="form-label fw-bold">Signature Name</label>
+			<input type="text" class="form-control" name="signature_name" id="signatureName" value="{{ $email->signature_name }}">
+		</div> -->
 		<div class="mb-3">
 			<label for="subject" class="form-label fw-bold">Email Subject</label>
 			<input type="text" class="form-control" name="subject" id="subject" value="{{ $email->subject }}">
+		</div>
+		<div class="mb-3">
+			<label for="bodyImg" class="form-label fw-bold">Body Image</label>
+			@if ($email->body_img)
+			<div>
+				<img src="{{ asset('storage/images/body/' . $email->body_img) }}" class="img-fluid" style="max-height: 250px;" alt="body_image">
+			</div>
+			@endif
+			<input class="form-control" type="file" name="body_img" id="bodyImg">
+		</div>
+		<div class="mb-3">
+			@if ($email->signature_img)
+			<div>
+				<img src="{{ asset('storage/images/signature/' . $email->signature_img) }}" class="img-fluid" style="max-height: 250px;" alt="signature_image">
+			</div>
+			@endif
+			<label for="signatureImg" class="form-label fw-bold">Signature Image</label>
+			<input class="form-control" type="file" name="signature_img" id="signatureImg">
 		</div>
 		
         <div class="mb-3">

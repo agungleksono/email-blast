@@ -30,6 +30,20 @@ class SendEmail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Tests')->view('emails');
+        $email = $this->subject($this->data['subject'])
+                      ->view('emails');
+        
+        // Set dynamic sender email if provided
+        if ($this->data['sender_mail'] && $this->data['sender_name']) {
+            $email->from($this->data['sender_mail'], $this->data['sender_name']);
+        } 
+        // else {
+        //     // Default sender email if no dynamic sender is provided
+        //     $email->from(config('mail.from.address'), config('mail.from.name'));
+        // }
+
+        // $email->bcc($this->data['sender_mail']);
+
+        return $email;
     }
 }
