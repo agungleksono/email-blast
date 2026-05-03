@@ -15,20 +15,12 @@ class MailController extends Controller
 {
     public function sendMail()
     {
-        // Set the timezone to Jakarta
         date_default_timezone_set('Asia/Jakarta');
 
         $clients = EmailSchedule::where('email_schedule', now()->format('Y-m-d H:i:00'))
-                        ->select('id', 'email', 'pic', 'company_name', 'company_address')
+                        ->select('id', 'email', 'pic', 'company_name', 'company_address', 'subject', 'section', 'product', 'email_intro', 'form_1', 'form_3', 'email_type')
                         ->get();
 
-        // $data = [
-        //     'title' => 'Mail from Laravel 8',
-        //     'body' => 'This is a test email using Laravel 8.',
-        //     'pic' => 'Sir/Madam',
-        //     'company_name' => 'PT Denso Indonesia',
-
-        // ];
         $email = EmailTemplate::where('id', 1)
                         ->first();
 
@@ -39,7 +31,7 @@ class MailController extends Controller
                     'pic' => $client->pic,
                     'company_name' => $client->company_name,
                     'company_address' => $client->company_address,
-                    'subject' => $email->subject,
+                    'subject' => $client->subject,
                     'sender_mail' => $email->sender_mail,
                     'sender_name' => $email->sender_name,
                     'signature_name' => $email->signature_name,
@@ -47,6 +39,12 @@ class MailController extends Controller
                     'lower_body' => $email->lower_body,
                     'body_img' => $email->body_img,
                     'signature_img' => $email->signature_img,
+                    'section' => $client->section,
+                    'product' => $client->product,
+                    'email_intro' => $client->email_intro,
+                    'form_1' => $client->form_1,
+                    'form_3' => $client->form_3,
+                    'email_type' => $client->email_type,
                 ];
     
                 try {

@@ -31,6 +31,13 @@ class ClientImport implements ToModel, WithHeadingRow
             'website' => $row['web_site'],
             'company_address' => $row['company_address'],
             'email_schedule' => $emailSchedule,
+            'subject' => $row['subject_email'],
+            'section' => $row['section'],
+            'product' => $row['product'],
+            'email_intro' => $row['introduce'],
+            'form_1' => $row['form_1'],
+            'form_3' => $row['form_3'],
+            'email_type' => strtolower($row['type']),
         ]);
     }
     
@@ -64,6 +71,11 @@ class ClientImport implements ToModel, WithHeadingRow
             'email',
             'web_site',
             'company_address',
+            'subject_email',
+            'introduce',
+            'form_1',
+            'form_3',
+            'type',
         ];
 
         foreach ($requiredFields as $field) {

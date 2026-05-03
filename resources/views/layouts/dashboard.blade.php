@@ -105,7 +105,9 @@
     @stack('prepend-script')
     @include('includes.script')
     <script>
-        new DataTable('#example');
+        new DataTable('#example', {
+            scrollX: true
+        });
     </script>
     @stack('addon-script')
 </body>

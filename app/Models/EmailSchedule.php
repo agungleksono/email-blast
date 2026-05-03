@@ -17,5 +17,12 @@ class EmailSchedule extends Model
         'website',
         'company_address',
         'email_schedule',
+        'subject',
+        'section',
+        'product',
+        'email_intro',
+        'form_1',
+        'form_3',
+        'email_type',
     ];
 }

@@ -1,9 +1,9 @@
 @extends('layouts.dashboard')
 
 @section('content')
-<a href="{{ url('/export-email-schedules') }}" class="btn btn-success">
+<!-- <a href="{{ url('/export-email-schedules') }}" class="btn btn-success">
     Export to Excel
-</a>
+</a> -->
 <form action="{{ route('import-schedule') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <input type="file" name="file" accept=".xls,.xlsx">
@@ -12,8 +12,8 @@
 <form action="{{ url('/email-schedule') }}" method="post" onsubmit="return confirmDeleteAll(event)">
 @csrf
 <div class="mt-2 mb-4">
-    <input type="date" id="birthday" name="date_schedule">
-    <input type="time" id="birthday" name="time_schedule">
+    <input type="date" name="date_schedule">
+    <input type="time" name="time_schedule">
     <!-- <input class="btn btn-success btn-sm ms-2" type="submit" name="submit" value="Set Schedule">
     <input type="submit" name="submit" value="Delete"> -->
     <button type="submit" class="btn btn-success btn-sm ms-2" name="submit" value="schedule">Set Schedule</button>
@@ -29,25 +29,39 @@
                 <input type="checkbox" id="select-all">
             </th>
             <th scope="col">#</th>
-            <th scope="col">Company Name</th>
-            <th scope="col">PIC</th>
-            <th scope="col">Email</th>
-            <th scope="col">Website</th>
-            <th scope="col">Company Address</th>
-            <th scope="col">Email Schedule</th>
+            <th scope="col" class="ps-3">Company Name</th>
+            <th scope="col" class="ps-3">PIC</th>
+            <th scope="col" class="ps-3">Section</th>
+            <th scope="col" class="ps-3">Email</th>
+            <th scope="col" class="ps-3">Website</th>
+            <th scope="col" class="ps-3">Company Address</th>
+            <th scope="col" class="ps-3">Email Schedule</th>
+            <th scope="col" class="ps-3">Product</th>
+            <th scope="col" class="ps-3">Subject Email</th>
+            <th scope="col" class="ps-3">Introduction</th>
+            <th scope="col" class="ps-3">Form 1</th>
+            <th scope="col" class="ps-3">Form 3</th>
+            <th scope="col" class="ps-3">Type</th>
         </tr>
     </thead>
     <tbody>
         @foreach ($clients as $client)
         <tr>
             <td><input class="form-check-input row-checkbox" type="checkbox" name="checkbox[]" value="{{ $client->id }}"></td>
-            <td>{{ $loop->iteration }}</td>
-            <td>{{ $client->company_name }}</td>
-            <td>{{ $client->pic }}</td>
-            <td>{{ $client->email }}</td>
-            <td>{{ $client->website }}</td>
-            <td>{{ $client->company_address }}</td>
-            <td>{{ $client->email_schedule }}</td>
+            <td class="ps-3">{{ $loop->iteration }}</td>
+            <td class="ps-3">{{ $client->company_name }}</td>
+            <td class="ps-3">{{ $client->pic }}</td>
+            <td class="ps-3">{{ $client->section }}</td>
+            <td class="ps-3">{{ $client->email }}</td>
+            <td class="ps-3">{{ $client->website }}</td>
+            <td class="ps-3">{{ $client->company_address }}</td>
+            <td class="ps-3">{{ $client->email_schedule }}</td>
+            <td class="text-nowrap ps-3">{{ $client->product }}</td>
+            <td class="text-nowrap ps-3">{{ $client->subject }}</td>
+            <td class="text-nowrap ps-3">{{ $client->email_intro }}</td>
+            <td class="text-nowrap ps-3">{{ $client->form_1 }}</td>
+            <td class="text-nowrap ps-3">{{ $client->form_3 }}</td>
+            <td class="ps-3">{{ $client->email_type }}</td>
         </tr>
         @endforeach
     </tbody>
