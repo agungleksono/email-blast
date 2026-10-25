@@ -58,7 +58,7 @@ class ClientImport implements ToModel, WithHeadingRow
             return null;
         }
 
-        return date('Y-m-d H:i:s', $timestamp);
+        return date('Y-m-d H:i:00', $timestamp);
     }
 
     // to prevent when excel file there is no data but only insert date and time

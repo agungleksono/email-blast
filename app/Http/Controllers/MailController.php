@@ -18,7 +18,7 @@ class MailController extends Controller
         date_default_timezone_set('Asia/Jakarta');
 
         $clients = EmailSchedule::where('email_schedule', now()->format('Y-m-d H:i:00'))
-                        ->select('id', 'email', 'pic', 'company_name', 'company_address', 'subject', 'section', 'product', 'email_intro', 'form_1', 'form_3', 'email_type')
+                        ->select('id', 'email', 'pic', 'company_name', 'website', 'company_address', 'subject', 'section', 'product', 'email_intro', 'form_1', 'form_3', 'email_type')
                         ->get();
 
         $email = EmailTemplate::where('id', 1)
@@ -31,6 +31,7 @@ class MailController extends Controller
                     'pic' => $client->pic,
                     'company_name' => $client->company_name,
                     'company_address' => $client->company_address,
+                    'website' => $client->website,
                     'subject' => $client->subject,
                     'sender_mail' => $email->sender_mail,
                     'sender_name' => $email->sender_name,
@@ -81,6 +82,13 @@ class MailController extends Controller
             'lower_body' => $email->lower_body,
             'body_img' => $email->body_img,
             'signature_img' => $email->signature_img,
+            'section' => 'Research and Development',
+            'product' => 'Coconut Sugar',
+            'email_intro' => 'My name is Christina from SagaraTCO',
+            'form_1' => "I'm reaching out because we specialize in sourcing high-quality",
+            'form_3' => 'and, after seeing what you do, I truly believe our products would be a fantastic fit for your market.',
+            'email_type' => 'type 6',
+            
         ];
 
         try {

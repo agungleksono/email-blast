@@ -46,7 +46,8 @@
     {!! $data['upper_body'] !!}
 
     {{-- Product Image --}}
-    <img src="{{ url('/assets/sample.png') }}" style="width: 400px" alt="products" />
+    <img src="{{ url('storage/images/body/' . $data['body_img']) }}" style="width: 400px" alt="products" />
+    <!-- <img src="{{ url('/assets/sample.png') }}" style="width: 400px" alt="products" /> -->
 
     {{-- Lower body (HTML content) --}}
     {!! $data['lower_body'] !!}
@@ -54,6 +55,7 @@
     <br>
 
     {{-- Signature image --}}
-    <img src="{{ url('/assets/signature.png') }}" style="width: 300px" alt="signature" />
+    <img src="{{ url('storage/images/signature/' . $data['signature_img']) }}" style="width: 300px" alt="signature" />
+    <!-- <img src="{{ url('/assets/signature.png') }}" style="width: 300px" alt="signature" /> -->
 </body>
 </html>

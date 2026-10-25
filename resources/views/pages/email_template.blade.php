@@ -34,18 +34,19 @@
 			<label for="bodyImg" class="form-label fw-bold">Body Image</label>
 			@if ($email->body_img)
 			<div>
+				<!-- <img src="{{ url('storage/images/body/' . $email->body_img) }}" class="img-fluid" style="max-height: 250px;" alt="body_image"> -->
 				<img src="{{ asset('storage/images/body/' . $email->body_img) }}" class="img-fluid" style="max-height: 250px;" alt="body_image">
 			</div>
 			@endif
 			<input class="form-control" type="file" name="body_img" id="bodyImg">
 		</div>
 		<div class="mb-3">
+			<label for="signatureImg" class="form-label fw-bold">Signature Image</label>
 			@if ($email->signature_img)
 			<div>
 				<img src="{{ asset('storage/images/signature/' . $email->signature_img) }}" class="img-fluid" style="max-height: 250px;" alt="signature_image">
 			</div>
 			@endif
-			<label for="signatureImg" class="form-label fw-bold">Signature Image</label>
 			<input class="form-control" type="file" name="signature_img" id="signatureImg">
 		</div>
 		
